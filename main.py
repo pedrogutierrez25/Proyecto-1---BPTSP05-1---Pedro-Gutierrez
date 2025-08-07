@@ -1,6 +1,6 @@
-from MuseoMet import MuseoMet
+from museomet import museomet
 #from db import db
 def main():
-      MuseoMet.start()
+      museomet.start()
 
 main()

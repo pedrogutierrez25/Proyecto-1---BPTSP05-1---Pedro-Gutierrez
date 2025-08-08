@@ -15,7 +15,7 @@ main()
                                      ---------------------------
 
     El siguiente programa de consola funge como un pequeno catalogo digital del Museo metropolitano 
-    de arte de Nueva York, con el cual se interactúa mediante linea de comandos. Muestra un simple menú
+    de Arte, con el cual se interactúa mediante linea de comandos. Muestra un simple menú
     en el que se da a elegir visualizar las listas de obras de arte por: Departamento, Nacionalidad del 
     autor y nombre del autor. Una vez seleccionada la obra segun la clasificacion elegida, se pueden 
     consultar su informacion completa, incluyendo imagen.

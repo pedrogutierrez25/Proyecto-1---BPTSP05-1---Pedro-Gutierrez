@@ -20,15 +20,59 @@ class museomet:
 
 #--------------------------------------------------------------------------------
 
-    def start(self):
+    
+    UrlBaseApi = "https://collectionapi.metmuseum.org/public/collection/v1"
+    
+    
+    def get_from_api(self, endpoint): 
+        try:
+             pass        # Metodo para obtener datos de la API del museo metropolitano de arte
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    def start(self):            # Metodo principal. Inicia la aplicacion y muestra el menu principal para luego ir llamando a los otros metodos
 
         print()
         print("Un momento... Cargando datos")
         print()
-
+        print(img_ascii)
+       
         while True:
             
-            print(img_ascii)
             print(menu_inicio)
             Uchoice = input("Escriba su opción aqui---> ")
 

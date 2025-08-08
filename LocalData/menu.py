@@ -21,7 +21,7 @@ img_ascii = """
 
 # Tomado de https://www.asciiart.eu/buildings-and-places/castles
 
-menu_inicio = """                   ¡Hola! Bienvenido al Museo Metropolitano de Arte de Nueva York
+menu_inicio = """                ¡Hola! Bienvenido al Museo Metropolitano de Arte - Proyecto MetroArt
             ------------------------=========================--------------------------
                            Este es un catalogo digital de obras de arte
                        

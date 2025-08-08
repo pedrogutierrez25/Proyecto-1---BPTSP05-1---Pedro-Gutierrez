@@ -19,5 +19,17 @@ class museomet:
 
     def start(self):
 
+        print()
         print("Un momento... Cargando datos")
+        print()
+
+        while True:
+            
+            print("¡Hola! Bienvenido al Museo Metropolitano de Arte de Nueva York")
+            print("Este es un catalogo digital de obras de arte")
+            print()
+            print()
+            print()
+            
+            Uchoice = input(" ¡Hola! Bienvenido al Museo Metropolitano de Arte de Nueva York \n")
 

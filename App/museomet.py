@@ -15,28 +15,49 @@ from LocalData.menu import img_ascii, menu_inicio              # Importacion de 
 
 class museomet:
     
-    def __init__(self,departamentos = []):           # Atributo de la clase principal
+    def __init__(self,departamentos = []):           # Atributo de la clase principal y lista a llenar con los departamentos del museo
         self.departamentos = departamentos
 
 #--------------------------------------------------------------------------------
 
-    
-    UrlBaseApi = "https://collectionapi.metmuseum.org/public/collection/v1"
-    
-    def get_from_api(self, endpoint): 
-        try:
-             respuesta = requests.get(f"{self.UrlBaseApi}/{endpoint}") 
+    UrlBaseApi = "https://collectionapi.metmuseum.org/public/collection/v1"       # URL base de la API del museo
+
+
+    def get_from_api(self, endpoint):                                          # Metodo basico para solicitar datos a la API segun el endpoint que se le introduzca
+        try:                                                                     # Usa la sentancia try-except para evitar errores de conexion y demas.
+             respuesta = requests.get(f"{self.UrlBaseApi}/{endpoint}")            # Guarda los datos como un JSON en "respuesta"
              return respuesta.json()   
-        except: requests.exceptions.RequestException as errorcode:
-            print(f" Error {errorcode} con la API")  
+        except requests.exceptions.RequestException as errorcode:
+            print(f" Error {errorcode} con la API") 
+            return None
+
+#  --------------------------------------------------------------------------
     
+    def cargar_departamentos(self):                                                    # Metodo que guarda los departamentos como un diccionario desde la solicitud, para luego cederle los parametros a cada objeto 
+        dptos_data = self.get_from_api("departments")                                     #  -->         de tipo "Departamento" que se guardaran en la lista de departamentos
+        if dptos_data and 'departments' in dptos_data:
+            for dep in dptos_data['departments']:
+                departamento = Departamento(dep['departmentId'], dep['displayName'])       # instanciar departamentos
+                self.departamentos.append(departamento)
+        else:
+            print("No se pudieron cargar los departamentos")    
     
+# ------------------------------------------------------------------------------------------
+
+    def buscar_obras_por_departamento(self):
+         print("Estos son los departamentos disponibles:")
+         for dep in self.departamentos:
+            dep.show() 
+                                                         #Ahora para mostrar las obras por departmaneto se llama a la API luego de pedir el ID del departamento
+         
+         Udepchoice = int(input("Ingrese el ID del departamento que desee consultar --->"))
     
-    
-    
-    
-    
-    
+         try:
+            obra_dept = self.get_from_api(f"objects?departmentIds={Udepchoice}")
+            if (obra_dept==None) or (obra_dept.get("objectsIDs") is None):
+                print("No se encontraron obras en este departamento")
+                return
+         except ValueError
     
     
     

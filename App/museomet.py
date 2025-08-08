@@ -8,11 +8,16 @@ from Classes.ObraDeArte import ObrArt           # Importacion de las clases para
 from Classes.Departamento import Departamento
 
 
-departamentos = []
+
 
 class museomet:
     
-    def __init__(self,departamentos):      #Atributo de la clase principal
+    def __init__(self,departamentos = []):           # Atributo de la clase principal
         self.departamentos = departamentos
 
+#--------------------------------------------------------------------------------
+
+    def start(self):
+
+        print("Un momento... Cargando datos")
 

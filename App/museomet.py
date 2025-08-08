@@ -7,6 +7,9 @@ from PIL import Image
 from Classes.ObraDeArte import ObrArt           # Importacion de las clases para objetos de tipo "Obra de arte" y "departamento"
 from Classes.Departamento import Departamento
 
+from LocalData.UI_Decoracion import img_ascii    # Importacion de la imagen ASCII para decorar la UI
+#from LocalData.Nacionalidades import nacionalidades_list  # Importacion de la lista de nacionalidades
+
 
 
 
@@ -25,6 +28,7 @@ class museomet:
 
         while True:
             
+            print
             print("¡Hola! Bienvenido al Museo Metropolitano de Arte de Nueva York")
             print("Este es un catalogo digital de obras de arte")
             print()

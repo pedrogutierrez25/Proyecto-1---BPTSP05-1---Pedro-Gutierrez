@@ -23,10 +23,12 @@ class museomet:
     
     UrlBaseApi = "https://collectionapi.metmuseum.org/public/collection/v1"
     
-    
     def get_from_api(self, endpoint): 
         try:
-             pass        # Metodo para obtener datos de la API del museo metropolitano de arte
+             respuesta = requests.get(f"{self.UrlBaseApi}/{endpoint}") 
+             return respuesta.json()   
+        except: requests.exceptions.RequestException as errorcode:
+            print(f" Error {errorcode} con la API")  
     
     
     

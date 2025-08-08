@@ -33,3 +33,13 @@ class museomet:
             Uchoice = input("Escriba su opción aqui---> ")
 
             if Uchoice == "1":
+                print("a")
+            elif Uchoice == "2":
+                print("b")
+            elif Uchoice == "3":
+                print("c")
+            elif Uchoice == "4":
+                print("Gracias por visitar el catalogo, ¡Hasta luego!")
+                break
+            else:
+                print("Opción inválida. Solo se admiten números del 1 al 4")

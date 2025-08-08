@@ -1,8 +1,8 @@
 from App.museomet import museomet
 
 def main():
-      App = museomet()
-      App.start()
+      MuseoApp = museomet()
+      MuseoApp.start()
 
 main()
 

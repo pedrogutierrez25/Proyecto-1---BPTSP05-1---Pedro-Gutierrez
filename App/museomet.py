@@ -1,4 +1,4 @@
-"""               Esta es la clase principal donde el programa es ejecutado
+"""                    Esta es la clase principal. Nucleo del programa
 ------------------------------------------------------------------------------------------"""
 
 import requests          # Importacion de las librerias ncesarias para solicitudes de la API y manejo de archivos
@@ -7,8 +7,8 @@ from PIL import Image
 from Classes.ObraDeArte import ObrArt           # Importacion de las clases para objetos de tipo "Obra de arte" y "departamento"
 from Classes.Departamento import Departamento
 
-from LocalData.UI_Decoracion import img_ascii    # Importacion de la imagen ASCII para decorar la UI
-#from LocalData.Nacionalidades import nacionalidades_list  # Importacion de la lista de nacionalidades
+from LocalData.menu import img_ascii, menu_inicio              # Importacion de la imagen ASCII para decorar y el menu inicial
+#from LocalData.Nacionalidades import nacionalidades_list         # Importacion de la lista de nacionalidades
 
 
 
@@ -28,12 +28,8 @@ class museomet:
 
         while True:
             
-            print
-            print("¡Hola! Bienvenido al Museo Metropolitano de Arte de Nueva York")
-            print("Este es un catalogo digital de obras de arte")
-            print()
-            print()
-            print()
-            
-            Uchoice = input(" ¡Hola! Bienvenido al Museo Metropolitano de Arte de Nueva York \n")
+            print(img_ascii)
+            print(menu_inicio)
+            Uchoice = input("Escriba su opción aqui---> ")
 
+            if Uchoice == "1":

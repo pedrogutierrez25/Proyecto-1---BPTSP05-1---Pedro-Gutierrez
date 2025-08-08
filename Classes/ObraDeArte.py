@@ -3,7 +3,7 @@
 
 class ObraArt:
    
-    def __init__(self, data_dict):
+    def __init__(self,id,titulo,artista,nacionalidad,fecha_nacimiento,fecha_muerte,tipo,anio_creacion,url_imagen):
         self.id = id 
         self.titulo = titulo 
         self.artista = artista 
@@ -11,7 +11,7 @@ class ObraArt:
         self.fecha_nacimiento = fecha_nacimiento 
         self.fecha_muerte = fecha_muerte 
         self.tipo = tipo 
-        self.ano_creacion = anio_creacion 
+        self.anio_creacion = anio_creacion 
         self.url_imagen = url_imagen 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -24,11 +24,13 @@ class ObraArt:
      
     def show(self):                   #Metodo para mostrar informacion completa de cada obra cuando se le llama por ID
 
-        print("\n--- DETALLES DE LA OBRA ---")
+        print()
+        print("----------------------------------------------------------------------------")
+        print("      ---=== INFORMACIÓN DETALLADA DE LA OBRA ===---")
         print(f"Título: {self.titulo}")
         print(f"Artista: {self.artista}")
         print(f"Nacionalidad: {self.nacionalidad}")
-        print(f"Biografía: {self.fecha_nacimiento} - {self.fecha_muerte}")
-        print(f"Año de creación: {self.ano_creacion}")
+        print(f"Biografía: nace: {self.fecha_nacimiento} -- fallece: {self.fecha_muerte}")
+        print(f"Año de creación: {self.anio_creacion}")
         print(f"Tipo: {self.tipo}")
-        print("--------------------------\n")
+        print("----------------------------------------------------------------------------")

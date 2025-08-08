@@ -1,7 +1,7 @@
 #Clase de objeto "Obra de Arte" con ID, Titulo, Nombre del Artista, nacionalidad del artista, fecha de nacimiento del artista,
 #  fecha de muerte, Tipo (classification), año de creación (objectDate) e Imagen de la obra.
 
-class ObraArt:
+class ObrArt:
    
     def __init__(self,id,titulo,artista,nacionalidad,fecha_nacimiento,fecha_muerte,tipo,anio_creacion,url_imagen):
         self.id = id 

@@ -1,6 +1,18 @@
-"""               Esta es la clase principal del programa es ejecutado
+"""               Esta es la clase principal donde el programa es ejecutado
 ------------------------------------------------------------------------------------------"""
 
-import requests          # Importacion de las librerias ncesarias para solicutud de la API y manejo de archivos
+import requests          # Importacion de las librerias ncesarias para solicitudes de la API y manejo de archivos
 from PIL import Image
+
+from Classes.ObraDeArte import ObrArt           # Importacion de las clases para objetos de tipo "Obra de arte" y "departamento"
+from Classes.Departamento import Departamento
+
+
+departamentos = []
+
+class museomet:
+    
+    def __init__(self,departamentos):      #Atributo de la clase principal
+        self.departamentos = departamentos
+
 

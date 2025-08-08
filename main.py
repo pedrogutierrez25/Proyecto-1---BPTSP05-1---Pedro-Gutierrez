@@ -1,4 +1,4 @@
-from museomet import museomet
+from App.museomet import museomet
 #from db import db
 def main():
       museomet.start()

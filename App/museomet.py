@@ -18,6 +18,35 @@ class museomet:
     def __init__(self,departamentos = []):           # Atributo de la clase principal y lista a llenar con los departamentos del museo
         self.departamentos = departamentos
 
+#------------------------------------------------------------------------------------------
+
+    def start(self):            # Metodo principal. Inicia la aplicacion y muestra el menu principal para luego ir llamando a los otros metodos
+
+        print()
+        self.cargar_departamentos()          # Carga los departamentos al iniciar la app
+        print("Un momento... Cargando datos")
+        print()
+        print(img_ascii)
+       
+        while True:
+            
+            print(menu_inicio)
+            Uchoice = input("Escriba su opción aqui---> ")
+
+            if Uchoice == "1":
+                self.buscar_obras_por_departamento()  # Llama al metodo para buscar obras por departamento
+            elif Uchoice == "2":
+                self.buscar_obras_autor()               # Llama al metodo para buscar obras por autor
+            elif Uchoice == "3":
+                self.ver_detalles_obra()               # Llama al metodo para ver detalles de una obra
+            elif Uchoice == "4":
+                print("Gracias por visitar el catalogo, ¡Hasta luego!")
+                break
+            else:
+                print()
+                print("Opción inválida. Solo se admiten números enteros del 1 al 4")
+    
+
 #--------------------------------------------------------------------------------
 
     UrlBaseApi = "https://collectionapi.metmuseum.org/public/collection/v1"       # URL base de la API del museo
@@ -164,50 +193,3 @@ class museomet:
             img.show()
         except Exception as error:
             print(f"No se pudo mostrar la imagen por un error: {error}")
-    
-"""---------------------------------------------------------------------------------------------------------------------------------------------------------"""    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    def start(self):            # Metodo principal. Inicia la aplicacion y muestra el menu principal para luego ir llamando a los otros metodos
-
-        print()
-        print("Un momento... Cargando datos")
-        print()
-        print(img_ascii)
-       
-        while True:
-            
-            print(menu_inicio)
-            Uchoice = input("Escriba su opción aqui---> ")
-
-            if Uchoice == "1":
-                print("a")
-            elif Uchoice == "2":
-                print("b")
-            elif Uchoice == "3":
-                print("c")
-            elif Uchoice == "4":
-                print("Gracias por visitar el catalogo, ¡Hasta luego!")
-                break
-            else:
-                print()
-                print("Opción inválida. Solo se admiten números enteros del 1 al 4")
-                print()

@@ -69,7 +69,7 @@ class museomet:
                                    detalles_obra.get('artistEndDate', 'N/A'),
                                    detalles_obra.get('classification', 'N/A'),
                                    detalles_obra.get('objectDate', 'N/A'),
-                                   detalles_obra.get('primaryImageSmall', '')) 
+                                   detalles_obra.get('primaryImageSmall', ''))   # Con .get se evitan errores si llega a faltar algun atributo a la hora de instanciar
                      obra_obj.show_res()  # Muestra detalles resumidos de la obra    
                      print()
      
@@ -78,7 +78,10 @@ class museomet:
         except requests.exceptions.RequestException as errorcode:
             print(f"Error {errorcode} al buscar obras por departamento")
     
+#---------------------------------------------------------------------------------------------------------------------------------------------------------    
     
+    lll
+
     
     
     

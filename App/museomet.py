@@ -50,14 +50,33 @@ class museomet:
             dep.show() 
                                                          #Ahora para mostrar las obras por departmaneto se llama a la API luego de pedir el ID del departamento
          
-         Udepchoice = int(input("Ingrese el ID del departamento que desee consultar --->"))
-    
-         try:
-            obra_dept = self.get_from_api(f"objects?departmentIds={Udepchoice}")
-            if (obra_dept==None) or (obra_dept.get("objectsIDs") is None):
-                print("No se encontraron obras en este departamento")
-                return
-         except ValueError
+    Udepchoice = int(input("Ingrese el ID del departamento que desee consultar (solo numeros) --->"))
+     
+        try:
+             obra_dept = self.get_from_api(f"objects?departmentIds={Udepchoice}")
+             if (obra_dept is None) or (obra_dept.get("objectIDs") is None):         # El metodo .get() evita errores si la clave "objectIDs" no existe 
+              print("No se encontraron obras en este departamento")
+              return
+         
+             for obra_id in obra_dept['objectIDs'][:25]:
+                 detalles_obra = self.get_from_api(f"objects/{obra_id}")
+                 if detalles_obra:
+                     obra_obj = ObrArt(detalles_obra.get('objectID', 'N/A'),           
+                                   detalles_obra.get('title', 'Sin título'),
+                                   detalles_obra.get('artistDisplayName', 'Artista desconocido'),
+                                   detalles_obra.get('artistNationality', 'N/A'),
+                                   detalles_obra.get('artistBeginDate', 'N/A'),
+                                   detalles_obra.get('artistEndDate', 'N/A'),
+                                   detalles_obra.get('classification', 'N/A'),
+                                   detalles_obra.get('objectDate', 'N/A'),
+                                   detalles_obra.get('primaryImageSmall', '')) 
+                     obra_obj.show_res()  # Muestra detalles resumidos de la obra    
+                     print()
+     
+        except ValueError:
+            print("ID de departamento inválido. Por favor, ingrese un número")
+        except requests.exceptions.RequestException as errorcode:
+            print(f"Error {errorcode} al buscar obras por departamento")
     
     
     

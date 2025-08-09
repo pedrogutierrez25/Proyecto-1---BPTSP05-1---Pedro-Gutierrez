@@ -109,7 +109,40 @@ class museomet:
 
 #-----------------------------------------------------------------------------------------------------------------------------------------                
     
-    #def ver_detalles_obra(self):
+    def ver_detalles_obra(self):
+        
+        try:
+            print("Ingrese el ID de la obra de su interés para ver sus detalles: ")
+            id_obra = int(input("Escriba el ID aquí ---> "))
+            detalles_obra = self.get_from_api(f"objects/{id_obra}")
+            
+            if (detalles_obra==None) or ('objectID' not in detalles_obra):
+                print(f"No se encontró una obra con el ID {id_obra}")
+                return
+
+            obra_obj = ObrArt(detalles_obra.get('objectID', 'N/A'),           
+                                   detalles_obra.get('title', 'Sin título'),
+                                   detalles_obra.get('artistDisplayName', 'Artista desconocido'),
+                                   detalles_obra.get('artistNationality', 'N/A'),
+                                   detalles_obra.get('artistBeginDate', 'N/A'),
+                                   detalles_obra.get('artistEndDate', 'N/A'),
+                                   detalles_obra.get('classification', 'N/A'),
+                                   detalles_obra.get('objectDate', 'N/A'),
+                                   detalles_obra.get('primaryImageSmall', ''))   # Con .get se evitan errores si llega a faltar algun atributo a la hora de instanciar
+            obra_obj.show_res()  # Muestra detalles resumidos de la obra igual que mas arriba 
+            print()
+
+            ver_imagen = int(input("""¿Desea ver la imagen de la obra?
+                                   --(1) Sí
+                                   --(2) No 
+                                   Escriba su opción aquí ---> """))
+            if ver_imagen == 1:
+                self.mostrar_imagen(obra_obj.url_imagen)
+            elif ver_imagen != 1 and ver_imagen != 2:
+                print("Opción inválida. Solo se admiten enteros del 1 al 2")
+        
+        except ValueError:
+            print("Error: Debe ingresar un ID numérico")
 
     
     

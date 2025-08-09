@@ -9,8 +9,7 @@ from Classes.Departamento import Departamento
 
 from LocalData.menu import img_ascii, menu_inicio              # Importacion de la imagen ASCII para decorar y el menu inicial
 #from LocalData.Nacionalidades import nacionalidades_list         # Importacion de la lista de nacionalidades
-
-
+Nacionalidades = open("LocalData/Nacionalidades.txt", "r")  
 
 
 class museomet:
@@ -34,17 +33,20 @@ class museomet:
             Uchoice = input("Escriba su opción aqui---> ")
 
             if Uchoice == "1":
-                self.buscar_obras_por_departamento()  # Llama al metodo para buscar obras por departamento
+                self.buscar_obras_por_departamento()  
             elif Uchoice == "2":
-                self.buscar_obras_autor()               # Llama al metodo para buscar obras por autor
+                print(Nacionalidades.read())   
+                self.buscar_por_nacionalidad               
             elif Uchoice == "3":
-                self.ver_detalles_obra()               # Llama al metodo para ver detalles de una obra
+                self.buscar_obras_autor()                
             elif Uchoice == "4":
+                self.ver_detalles_obra()               
+            elif Uchoice == "5":
                 print("Gracias por visitar el catalogo, ¡Hasta luego!")
                 break
             else:
                 print()
-                print("Opción inválida. Solo se admiten números enteros del 1 al 4")
+                print("Opción inválida. Solo se admiten números enteros del 1 al 5")
     
 
 #--------------------------------------------------------------------------------
@@ -138,6 +140,57 @@ class museomet:
 
 #-----------------------------------------------------------------------------------------------------------------------------------------                
     
+
+    def buscar_por_nacionalidad(self):
+        
+        print()
+        print("--- Búsqueda por Nacionalidad del autor ---")
+        
+
+        nacionalidad = input("Ingrese la nacionalidad que desea buscar (sin espacios) aqui ---> ")
+
+        if nacionalidad==None:
+            print("No ingresó una nacionalidad.")
+            return
+
+        
+        nacionalidad = self.get_from_api(f"search?q={nacionalidad}")
+        if (nacionalidad==None) or (nacionalidad.get("objectIDs")==None):
+            print(f"No se encontraron resultados para '{nacionalidad}'")
+            return
+
+        obras_filtradas = []
+       
+        for nac in nacionalidad["objectIDs"][:75]:
+            detalles_obra = self.get_from_api(f"objects/{nac}")
+            if detalles_obra:
+               obra_obj = ObrArt(detalles_obra.get('objectID', 'N/A'),           
+                              detalles_obra.get('title', 'Sin título'),
+                              detalles_obra.get('artistDisplayName', 'Artista desconocido'),
+                              detalles_obra.get('artistNationality', 'N/A'),
+                              detalles_obra.get('artistBeginDate', 'N/A'),
+                              detalles_obra.get('artistEndDate', 'N/A'),
+                              detalles_obra.get('classification', 'N/A'),
+                              detalles_obra.get('objectDate', 'N/A'),
+                              detalles_obra.get('primaryImageSmall', ''))   # Con .get se evitan errores si llega a faltar algun atributo a la hora de instanciar
+            obra_obj.show_res()  # Muestra detalles resumidos de la obra igual que mas arriba 
+            print()                
+            
+            if obra_obj.nacionalidad.lower() == nacionalidad.lower():
+                    obras_filtradas.append(obra_obj)
+
+        
+        if obras_filtradas==None:
+            print(f"No se encontraron obras de un autor de nacionalidad '{nacionalidad}'.")
+        else:
+            print(f"--- Obras Encontradas de Artistas con Nacionalidad: {nacionalidad} ---")
+            for obra in obras_filtradas:
+                obra.show_res()  # Muestra detalles resumidos de la obra igual que mas arriba
+    
+    
+    
+#-----------------------------------------------------------------------------------------------------------------------------------------
+    
     def ver_detalles_obra(self):
         
         try:
@@ -158,7 +211,7 @@ class museomet:
                               detalles_obra.get('classification', 'N/A'),
                               detalles_obra.get('objectDate', 'N/A'),
                               detalles_obra.get('primaryImageSmall', ''))   # Con .get se evitan errores si llega a faltar algun atributo a la hora de instanciar
-            obra_obj.show_res()  # Muestra detalles resumidos de la obra igual que mas arriba 
+            obra_obj.show()  # Muestra detalles resumidos de la obra igual que mas arriba 
             print()
 
             ver_imagen = int(input("""¿Desea ver la imagen de la obra?

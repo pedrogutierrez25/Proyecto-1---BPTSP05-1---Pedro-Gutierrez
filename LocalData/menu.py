@@ -30,5 +30,6 @@ menu_inicio = """                ¡Hola! Bienvenido al Museo Metropolitano de Ar
 >--(1) Ver obras de arte por departamento
 >--(2) Ver obras de arte por nacionalidad del autor
 >--(3) Ver obras de arte por nombre del autor
->--(4) Salir
+>--(4) Ver Detalles de una Obra 
+>--(5) Salir
 """

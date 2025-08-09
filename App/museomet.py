@@ -121,14 +121,14 @@ class museomet:
                 return
 
             obra_obj = ObrArt(detalles_obra.get('objectID', 'N/A'),           
-                                   detalles_obra.get('title', 'Sin título'),
-                                   detalles_obra.get('artistDisplayName', 'Artista desconocido'),
-                                   detalles_obra.get('artistNationality', 'N/A'),
-                                   detalles_obra.get('artistBeginDate', 'N/A'),
-                                   detalles_obra.get('artistEndDate', 'N/A'),
-                                   detalles_obra.get('classification', 'N/A'),
-                                   detalles_obra.get('objectDate', 'N/A'),
-                                   detalles_obra.get('primaryImageSmall', ''))   # Con .get se evitan errores si llega a faltar algun atributo a la hora de instanciar
+                              detalles_obra.get('title', 'Sin título'),
+                              detalles_obra.get('artistDisplayName', 'Artista desconocido'),
+                              detalles_obra.get('artistNationality', 'N/A'),
+                              detalles_obra.get('artistBeginDate', 'N/A'),
+                              detalles_obra.get('artistEndDate', 'N/A'),
+                              detalles_obra.get('classification', 'N/A'),
+                              detalles_obra.get('objectDate', 'N/A'),
+                              detalles_obra.get('primaryImageSmall', ''))   # Con .get se evitan errores si llega a faltar algun atributo a la hora de instanciar
             obra_obj.show_res()  # Muestra detalles resumidos de la obra igual que mas arriba 
             print()
 
@@ -144,9 +144,28 @@ class museomet:
         except ValueError:
             print("Error: Debe ingresar un ID numérico")
 
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------            
+
+    def mostrar_imagen(self, url):
+        
+        if url==None:
+            print("Esta obra no tiene una imagen disponible")
+            return
+
+        nombre_descarga = "image.jpg"
+        try:
+            print("Descargando imagen...")
+            response = requests.get(url, stream=True)
+            response.raise_for_status()
+            with open(nombre_descarga, 'wb') as file:
+                file.write(response.content)
+
+            img = Image.open(nombre_descarga)
+            img.show()
+        except Exception as error:
+            print(f"No se pudo mostrar la imagen por un error: {error}")
     
-    
-    
+"""---------------------------------------------------------------------------------------------------------------------------------------------------------"""    
     
     
     

@@ -80,12 +80,37 @@ class museomet:
     
 #---------------------------------------------------------------------------------------------------------------------------------------------------------    
     
-    lll
+    def buscar_obras_autor(self):
+       
+       print("¿Viste algun autor que te llamara la atencion?")
+       nombre_autor = input(" Escribe aquí su nombre para ver sus obras ---> ")
+ 
+       print(f"Buscando obras de '{nombre_autor}', por favor espere...")
 
+       autor = self.get_from_api(f"search?artistOrCulture=true&q={nombre_autor}")
+       if (autor is None) or (autor.get("objectIDs") is None):
+            print("No se encontraron obras para ese autor")
+            return
+
+       for obj_id in autor["objectIDs"][:25]: 
+            detalles_obra = self._api_get(f"objects/{obj_id}")
+            if detalles_obra:
+                obra_obj = ObrArt(detalles_obra.get('objectID', 'N/A'),           
+                                   detalles_obra.get('title', 'Sin título'),
+                                   detalles_obra.get('artistDisplayName', 'Artista desconocido'),
+                                   detalles_obra.get('artistNationality', 'N/A'),
+                                   detalles_obra.get('artistBeginDate', 'N/A'),
+                                   detalles_obra.get('artistEndDate', 'N/A'),
+                                   detalles_obra.get('classification', 'N/A'),
+                                   detalles_obra.get('objectDate', 'N/A'),
+                                   detalles_obra.get('primaryImageSmall', ''))   # Con .get se evitan errores si llega a faltar algun atributo a la hora de instanciar
+                obra_obj.show_res()  # Muestra detalles resumidos de la obra igual que mas arriba 
+                print()
+
+#-----------------------------------------------------------------------------------------------------------------------------------------                
     
-    
-    
-    
+    #def ver_detalles_obra(self):
+
     
     
     
@@ -131,4 +156,6 @@ class museomet:
                 print("Gracias por visitar el catalogo, ¡Hasta luego!")
                 break
             else:
-                print("Opción inválida. Solo se admiten números del 1 al 4")
+                print()
+                print("Opción inválida. Solo se admiten números enteros del 1 al 4")
+                print()
